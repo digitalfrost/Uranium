@@ -1,5 +1,3 @@
-image: registry.gitlab.com/ultimaker/cura/cura-build-environment:centos7
-
 stages:
   - build
 
@@ -7,10 +5,25 @@ build and test linux:
   stage: build
   tags:
     - cura
-    - docker
     - linux
+    - docker
+  image: registry.gitlab.com/ultimaker/cura/cura-build-environment:centos7
   script:
     - docker/build.sh
+  artifacts:
+    paths:
+      - build
+
+build and test windows:
+  stage: build
+  tags:
+    - cura
+    - windows
+    - powershell
+  variables:
+    IMAGE: registry.gitlab.com/ultimaker/cura/cura-build-environment:windows-core-1809
+  script:
+    - docker\build.ps1
   artifacts:
     paths:
       - build
