@@ -64,7 +64,11 @@ class Validator(SettingFunction.SettingFunction):
                 value_provider = context.rootStack()
 
             value = value_provider.getProperty(self._key, "value", context = context)
-            if value is None or value != value:
+            if not value:
+            # Previous code:
+            # if value is None or value != value:
+            # no indication as to why we are checking for value != value
+            # and as to when this might be the case
                 raise ValueError("Cannot validate None, NaN or similar values in setting {0}, actual value: {1}".format(self._key, value))
 
             setting_type = value_provider.getProperty(self._key, "type", context = context)
