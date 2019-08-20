@@ -60,7 +60,7 @@ class Validator(SettingFunction.SettingFunction):
             if minimum is not None and maximum is not None and minimum > maximum:
                 raise ValueError("Cannot validate a state of setting {0} with minimum > maximum".format(self._key))
 
-            if context is not None:
+            if context:
                 value_provider = context.rootStack()
 
             value = value_provider.getProperty(self._key, "value", context = context)
