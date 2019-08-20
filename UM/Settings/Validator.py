@@ -84,9 +84,9 @@ class Validator(SettingFunction.SettingFunction):
 
             elif setting_type == "bool":
                 state = ValidatorState.Valid
-                if boolean_warning_value is not None and value == boolean_warning_value:
+                if boolean_warning_value and boolean_warning_value == value:
                     state = ValidatorState.MaximumWarning
-                elif boolean_error_value is not None and value == boolean_error_value:
+                elif boolean_error_value and boolean_error_value == value:
                     state = ValidatorState.MaximumError
 
             elif minimum and minimum > value:
